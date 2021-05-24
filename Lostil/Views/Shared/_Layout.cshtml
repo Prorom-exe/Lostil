@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link href="~/css/myStyle.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap" rel="stylesheet">
+    <title>Салон красоты</title>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header_in">
+                <div class="header_lostil">Simple Loft</div>
+                <nav class="nav">
+                    <a class="nav_link" asp-action="Index" asp-controller="Home">Главная</a>
+                    @if (User.Identity.IsAuthenticated == true)
+                    {
+
+                        <a class="nav_link" asp-action="Contact" asp-controller="Home">О нас</a>
+
+                        <a class="nav_link" asp-action="LK" asp-controller="Account">@User.Identity.Name</a>
+
+                        <form method="post" asp-controller="Account" asp-action="Logout">
+                            <input class="nav_link" type="submit" value="Выход" />
+                        </form>
+                    }
+                    else
+                    {
+
+                        <a class="nav_link" asp-action="Contact" asp-controller="Home">О нас</a>
+
+                        <a class="nav_link" asp-action="Login" asp-controller="Account">Личный кабинет</a>
+
+                    }
+                    <form asp-action="Search" asp-controller="Tovar" method="get">
+                        <p>
+                            <input name="search" type="text" placeholder="Поиск" style="width:100px" />
+                            <button type="submit">Найти</button>
+                        </p>
+                    </form>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="imain">
+        
+            @RenderBody()
+        
+    </div>
+
+    <footer class="footer">
+       <div class="footer_info">
+            <div class="social_link">
+                <a href="https://www.instagram.com/simple_loft.nch/" target="_blank">
+                    <img src="/img/inst.png" alt="" class="social_image" />
+                    SimpleLoft
+                </a>
+            </div>
+            <div class="social_link">
+                <div class="phone">
+                    <img src="/img/whatsapp.png" alt="" class="social_image" />
+                    +7 0000 000 0 Рамиль
+                  
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

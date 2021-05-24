@@ -1,0 +1,50 @@
+﻿@{Layout = "_Layout"; }
+@model Lostil.Data.Models.ViewModel.LKViewModel
+<div class="container1">
+    @if (User.IsInRole("Admin") == true | User.IsInRole("Moderator") == true)
+    {
+        <div style="background:#ffffff;">
+            <a class="button" asp-action="UserList" asp-controller="Roles">Пользователи</a>
+
+
+        </div>
+    }
+    <div>
+        <form asp-action="LK">
+            <select name="tovarName">
+                <option value="">Товар...</option>
+                @foreach (var t in Model.Products)
+                {
+                    <option value="@t">@t</option>
+                }
+            </select>
+            <select name="status">
+                <option value="">Статус...</option>
+                <option value="В обработке">В обработке</option>
+                    <option value="В работе">В работе</option>
+                    <option value="Доставка">Доставка</option>
+                    <option value="Выполнен">Выполнен</option>
+                
+            </select>
+            <button type="submit">Показать</button>
+        </form>
+    </div>
+    <div class="lk_table">
+        
+
+            @foreach (var z in  Model.Orders)
+            {
+                <h2>@z.Key</h2>
+                <table class="table table-bordered">
+                    <tr><th style="padding-left:20px">Заказ</th><th style="padding-left:20px">Имя пользователя</th><th style="padding-left:20px">Время</th><th>Пожелания</th><th style="padding-left:20px">Статус</th></tr>
+                    @foreach (var d in z)
+                    {
+                        <tr style="margin-top:10px"><th style="padding-left:20px">@d.OrderName</th><th style="padding-left:20px">@d.UserName</th><th style="padding-left:20px">@d.Time</th><th style="padding-left:20px">@d.Description</th><th style="padding-left:20px">@d.Status</th></tr>
+                    }
+                </table>
+            }
+
+        
+    </div>
+</div>
+

@@ -1,0 +1,23 @@
+﻿@model Lostil.Data.Models.ViewModel.OrderZapViewModel
+@{Layout = "_Layout"; }
+<div class="container1">
+    <form asp-action="OrderZap" asp-controller="Order" method="post">
+        <input type="hidden" asp-for="ProductId" value="@Model.ProductId" />
+        <div class="zapis_window">
+            <p>Выберите дату доставки</p>
+            <input type="date" name="Date" value="@DateTime.Now.Date" asp-for="Date" />
+            <div>
+                <select asp-for="Time">
+                    <option value="10.00">10.00</option>
+                    <option value="12.00">12.00</option>
+                    <option value="14.00">14.00</option>
+                    <option value="16.00">16.00</option>
+                    <option value="18.00">18.00</option>
+                </select>
+            </div>
+            <p>Пожелания</p>
+            <input type="text" asp-for="Description" />
+            <input type="submit" value="Купить" />
+        </div>
+    </form>
+</div>

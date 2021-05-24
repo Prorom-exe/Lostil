@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Lostil.Data.Models.User>
+@{ Layout = "_Layout";}
+<div class="container1">
+    <h2>Список пользователей</h2>
+    <table class="table">
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Email</td>
+                <td>
+                    <a class="submit" asp-action="Edit" asp-route-userid="@user.Id">Права доступа</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

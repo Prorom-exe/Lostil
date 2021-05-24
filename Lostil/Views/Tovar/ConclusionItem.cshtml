@@ -1,0 +1,35 @@
+﻿@{Layout = "_Layout";}
+@model List<Product>
+
+<div class="container1">
+    @if (User.IsInRole("Admin") == true | User.IsInRole("Moderator") == true)
+    {
+        <a asp-action="AddItem" asp-controller="Tovar">Добавить изображение</a>
+    }
+    
+<div class="categorys_">
+    @foreach (var i in Model)
+    {
+    <div class="categorys_image">
+        <img src="@Url.Content(i.ImagePath)" class="box_image" />
+
+        <input type="hidden" value="@i.ProductName" />
+        
+        <input type="hidden" value="@i.ProductId" />
+        <div class="cat_info">
+            <p>@i.ProductName</p>
+            <p>@i.Description</p>
+            <p>Цена:@i.Price</p>
+
+
+            <a type="submit" asp-action="OrderZap" asp-controller="Order" asp-route-productId="@i.ProductId" style="background:#ffffff;">Купить</a>
+            @if (User.IsInRole("Admin") == true | User.IsInRole("Moderator") == true)
+            {
+                <a type="submit" asp-action="ConclusionItemEdit" asp-controller="Tovar" asp-route-productId="@i.ProductId">Редактировать</a>
+                <a type="submit" asp-action="ConclusionItemDelete" asp-controller="Tovar" asp-route-productId="@i.ProductId">удалить</a>
+            }
+        </div>
+    </div>
+            }
+        </div>
+    </div>
